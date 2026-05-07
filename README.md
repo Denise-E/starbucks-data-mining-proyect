@@ -61,11 +61,46 @@ data/CSV  →  notebooks/02 (preprocessing)  →  weka/ARFF  →  WEKA models
 
 ## How to Run
 
-1. Open notebooks in order: `01_eda` → `02_preprocessing` → `03_results_analysis`
-2. `02_preprocessing` will generate `weka/starbucks_dm.arff`
-3. Load the ARFF in WEKA Explorer → run J48 and SimpleKMeans
-4. Export WEKA results to `weka/results/`
-5. Run `03_results_analysis` to generate final charts
+**1. Prerequisites**
+
+Make sure you have **Python 3.11 or higher** installed. You can check your version with:
+
+```bash
+python --version
+```
+
+If not installed, download it from [python.org](https://www.python.org/downloads/).
+
+**2. Create and activate the virtual environment**
+
+```bash
+python -m venv venv
+venv\Scripts\activate        # Windows
+```
+
+**3. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Run the notebooks**
+
+```bash
+jupyter notebook
+```
+
+Open and run in order:
+1. `notebooks/01_eda.ipynb`
+2. `notebooks/02_preprocessing.ipynb` — generates `weka/starbucks_dm.arff`
+3. `notebooks/03_results_analysis.ipynb`
+
+**5. Run the WEKA models**
+
+- Open WEKA Explorer and load `weka/starbucks_dm.arff`
+- Classify tab → J48 → Start
+- Cluster tab → SimpleKMeans → Start
+- Save outputs to `weka/results/`
 
 ---
 
