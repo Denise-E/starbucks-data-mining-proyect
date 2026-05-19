@@ -1,0 +1,777 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     starbucks_decision_tree_v2
+Instances:    100000
+Attributes:   9
+              order_channel
+              time_period
+              store_location_type
+              cart_size
+              num_customizations
+              has_food_item
+              is_rewards_member
+              customer_satisfaction
+              fulfillment_speed
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+order_channel = Drive-Thru: Slow (27996.0/5115.0)
+order_channel = In-Store Cashier: Fast (22063.0/2348.0)
+order_channel = Kiosk: Fast (7420.0/2561.0)
+order_channel = Mobile App
+|   time_period = Afternoon
+|   |   has_food_item = False
+|   |   |   store_location_type = Rural
+|   |   |   |   is_rewards_member = False
+|   |   |   |   |   num_customizations <= 0: Fast (51.0/17.0)
+|   |   |   |   |   num_customizations > 0
+|   |   |   |   |   |   cart_size <= 4: Slow (402.0/173.0)
+|   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   cart_size <= 7
+|   |   |   |   |   |   |   |   cart_size <= 6: Fast (169.0/71.0)
+|   |   |   |   |   |   |   |   cart_size > 6
+|   |   |   |   |   |   |   |   |   num_customizations <= 5
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (25.0/8.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3: Fast (16.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 3: Slow (5.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (3.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 5: Fast (3.0)
+|   |   |   |   |   |   |   cart_size > 7: Slow (22.0/7.0)
+|   |   |   |   is_rewards_member = True
+|   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   |   customer_satisfaction <= 1
+|   |   |   |   |   |   |   |   num_customizations <= 2: Slow (37.0/14.0)
+|   |   |   |   |   |   |   |   num_customizations > 2: Fast (29.0/10.0)
+|   |   |   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   |   |   cart_size <= 1: Slow (2.0)
+|   |   |   |   |   |   |   |   |   cart_size > 1: Fast (47.0/17.0)
+|   |   |   |   |   |   |   |   num_customizations > 1: Slow (99.0/42.0)
+|   |   |   |   |   |   customer_satisfaction > 2: Slow (202.0/86.0)
+|   |   |   |   |   customer_satisfaction > 3: Fast (883.0/432.0)
+|   |   |   store_location_type = Suburban
+|   |   |   |   num_customizations <= 5
+|   |   |   |   |   is_rewards_member = False: Slow (748.0/353.0)
+|   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   customer_satisfaction <= 1
+|   |   |   |   |   |   |   |   num_customizations <= 4: Fast (66.0/27.0)
+|   |   |   |   |   |   |   |   num_customizations > 4: Slow (4.0)
+|   |   |   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   |   |   num_customizations <= 3: Slow (672.0/292.0)
+|   |   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (56.0/22.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Slow (75.0/30.0)
+|   |   |   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Slow (19.0/6.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Fast (18.0/2.0)
+|   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   num_customizations <= 0
+|   |   |   |   |   |   |   |   cart_size <= 6: Fast (38.0/11.0)
+|   |   |   |   |   |   |   |   cart_size > 6: Slow (7.0/2.0)
+|   |   |   |   |   |   |   num_customizations > 0: Slow (441.0/219.0)
+|   |   |   |   num_customizations > 5: Fast (60.0/21.0)
+|   |   |   store_location_type = Urban
+|   |   |   |   is_rewards_member = False: Fast (728.0/348.0)
+|   |   |   |   is_rewards_member = True: Slow (1322.0/647.0)
+|   |   has_food_item = True
+|   |   |   num_customizations <= 6
+|   |   |   |   is_rewards_member = False
+|   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   cart_size <= 4
+|   |   |   |   |   |   |   |   customer_satisfaction <= 1
+|   |   |   |   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Slow (3.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (7.0/2.0)
+|   |   |   |   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   |   |   |   cart_size <= 2: Fast (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 2: Slow (11.0/2.0)
+|   |   |   |   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Slow (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (3.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 1: Fast (88.0/38.0)
+|   |   |   |   |   |   |   cart_size > 4: Slow (38.0/13.0)
+|   |   |   |   |   |   cart_size > 5: Fast (51.0/18.0)
+|   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   |   cart_size <= 2: Fast (6.0/2.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 2: Slow (21.0/3.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 3: Fast (13.0/3.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 3: Slow (10.0/4.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 3: Fast (162.0/78.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Slow (171.0/74.0)
+|   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   cart_size <= 5: Fast (207.0/100.0)
+|   |   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 4: Slow (14.0/3.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (3.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Slow (39.0/15.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   cart_size <= 4: Slow (108.0/39.0)
+|   |   |   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   |   |   num_customizations <= 1: Slow (19.0/5.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   |   |   cart_size <= 7: Fast (45.0/15.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 7
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3: Slow (6.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 3: Fast (3.0/1.0)
+|   |   |   |   |   |   store_location_type = Urban: Slow (411.0/175.0)
+|   |   |   |   is_rewards_member = True
+|   |   |   |   |   store_location_type = Rural: Slow (828.0/403.0)
+|   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   cart_size <= 7: Slow (924.0/435.0)
+|   |   |   |   |   |   cart_size > 7
+|   |   |   |   |   |   |   cart_size <= 8
+|   |   |   |   |   |   |   |   num_customizations <= 0: Slow (2.0)
+|   |   |   |   |   |   |   |   num_customizations > 0: Fast (20.0/7.0)
+|   |   |   |   |   |   |   cart_size > 8
+|   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (4.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (3.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Fast (6.0)
+|   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   customer_satisfaction <= 1
+|   |   |   |   |   |   |   cart_size <= 3
+|   |   |   |   |   |   |   |   num_customizations <= 1: Slow (3.0)
+|   |   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   |   cart_size <= 2: Fast (4.0/1.0)
+|   |   |   |   |   |   |   |   |   cart_size > 2: Slow (3.0/1.0)
+|   |   |   |   |   |   |   cart_size > 3
+|   |   |   |   |   |   |   |   cart_size <= 4: Fast (7.0)
+|   |   |   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 1: Fast (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 1: Slow (3.0)
+|   |   |   |   |   |   |   |   |   cart_size > 5: Fast (8.0/1.0)
+|   |   |   |   |   |   customer_satisfaction > 1: Slow (823.0/402.0)
+|   |   |   num_customizations > 6: Slow (49.0/14.0)
+|   time_period = Evening
+|   |   customer_satisfaction <= 2
+|   |   |   has_food_item = False
+|   |   |   |   store_location_type = Rural
+|   |   |   |   |   customer_satisfaction <= 1: Fast (53.0/20.0)
+|   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   is_rewards_member = False: Slow (25.0/10.0)
+|   |   |   |   |   |   is_rewards_member = True: Fast (47.0/21.0)
+|   |   |   |   store_location_type = Suburban
+|   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   customer_satisfaction <= 1: Fast (23.0/8.0)
+|   |   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   |   num_customizations <= 1: Slow (4.0)
+|   |   |   |   |   |   |   num_customizations > 1: Fast (19.0/6.0)
+|   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   customer_satisfaction <= 1: Slow (28.0/11.0)
+|   |   |   |   |   |   customer_satisfaction > 1: Fast (71.0/32.0)
+|   |   |   |   store_location_type = Urban
+|   |   |   |   |   cart_size <= 2: Fast (19.0/5.0)
+|   |   |   |   |   cart_size > 2: Slow (132.0/59.0)
+|   |   |   has_food_item = True: Slow (235.0/109.0)
+|   |   customer_satisfaction > 2
+|   |   |   cart_size <= 3
+|   |   |   |   cart_size <= 1
+|   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   is_rewards_member = False: Slow (14.0/5.0)
+|   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   num_customizations <= 4: Fast (22.0/8.0)
+|   |   |   |   |   |   |   num_customizations > 4: Slow (5.0/1.0)
+|   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (16.0/4.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Fast (5.0)
+|   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (16.0/6.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Slow (16.0/5.0)
+|   |   |   |   |   store_location_type = Urban: Slow (36.0/11.0)
+|   |   |   |   cart_size > 1
+|   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   |   num_customizations <= 3: Fast (84.0/31.0)
+|   |   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   |   num_customizations <= 4: Slow (10.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (10.0/4.0)
+|   |   |   |   |   |   |   store_location_type = Suburban: Slow (93.0/40.0)
+|   |   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (53.0/20.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (35.0/13.0)
+|   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   |   cart_size <= 2
+|   |   |   |   |   |   |   |   |   num_customizations <= 5: Slow (65.0/26.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 5: Fast (5.0)
+|   |   |   |   |   |   |   |   cart_size > 2: Slow (98.0/45.0)
+|   |   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   |   num_customizations <= 3: Slow (149.0/60.0)
+|   |   |   |   |   |   |   |   num_customizations > 3: Fast (37.0/15.0)
+|   |   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   |   cart_size <= 2: Fast (65.0/31.0)
+|   |   |   |   |   |   |   |   cart_size > 2: Slow (95.0/43.0)
+|   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   |   num_customizations <= 4: Slow (65.0/26.0)
+|   |   |   |   |   |   |   |   num_customizations > 4: Fast (5.0/1.0)
+|   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   cart_size <= 2: Slow (42.0/17.0)
+|   |   |   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Slow (17.0/7.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Slow (20.0/7.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (20.0/5.0)
+|   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   cart_size <= 2
+|   |   |   |   |   |   |   |   customer_satisfaction <= 3: Slow (16.0/5.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (41.0/15.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   is_rewards_member = False: Slow (14.0/4.0)
+|   |   |   |   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 0: Slow (2.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 0: Fast (16.0/5.0)
+|   |   |   |   |   |   |   cart_size > 2: Fast (120.0/49.0)
+|   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   cart_size <= 2
+|   |   |   |   |   |   |   |   num_customizations <= 3: Fast (31.0/11.0)
+|   |   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   |   is_rewards_member = False: Slow (7.0)
+|   |   |   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 4: Slow (10.0/4.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (2.0)
+|   |   |   |   |   |   |   cart_size > 2: Slow (98.0/43.0)
+|   |   |   cart_size > 3
+|   |   |   |   has_food_item = False
+|   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   is_rewards_member = False: Fast (28.0/10.0)
+|   |   |   |   |   |   |   is_rewards_member = True: Slow (56.0/27.0)
+|   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   is_rewards_member = False: Slow (121.0/46.0)
+|   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   |   |   cart_size <= 4
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (39.0/13.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Slow (29.0/9.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (25.0/10.0)
+|   |   |   |   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (41.0/15.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (31.0/13.0)
+|   |   |   |   |   |   |   |   cart_size > 5: Slow (87.0/29.0)
+|   |   |   |   |   store_location_type = Suburban: Slow (538.0/255.0)
+|   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   num_customizations <= 0: Fast (8.0/3.0)
+|   |   |   |   |   |   |   |   num_customizations > 0: Slow (80.0/28.0)
+|   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   num_customizations <= 4: Slow (33.0/14.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (9.0/2.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   num_customizations <= 5: Fast (27.0/7.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 5: Slow (4.0/1.0)
+|   |   |   |   |   |   is_rewards_member = True: Slow (297.0/134.0)
+|   |   |   |   has_food_item = True
+|   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   is_rewards_member = False: Slow (6.0/1.0)
+|   |   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   |   num_customizations <= 0: Slow (4.0/1.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 0: Fast (4.0/1.0)
+|   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   is_rewards_member = False: Fast (31.0/12.0)
+|   |   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (24.0/10.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Fast (26.0/11.0)
+|   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   is_rewards_member = False: Slow (16.0/5.0)
+|   |   |   |   |   |   |   |   is_rewards_member = True: Fast (22.0/8.0)
+|   |   |   |   |   |   |   customer_satisfaction > 3: Slow (192.0/71.0)
+|   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   num_customizations <= 2: Slow (45.0/17.0)
+|   |   |   |   |   |   |   |   num_customizations > 2: Fast (36.0/13.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Slow (47.0/16.0)
+|   |   |   |   |   |   is_rewards_member = True: Slow (231.0/84.0)
+|   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   cart_size <= 4: Fast (27.0/11.0)
+|   |   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   |   cart_size <= 6: Slow (49.0/17.0)
+|   |   |   |   |   |   |   |   cart_size > 6
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Slow (7.0/2.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Fast (8.0/2.0)
+|   |   |   |   |   |   is_rewards_member = True: Slow (227.0/108.0)
+|   time_period = Mid-Day
+|   |   is_rewards_member = False
+|   |   |   store_location_type = Rural: Slow (1304.0/618.0)
+|   |   |   store_location_type = Suburban
+|   |   |   |   has_food_item = False
+|   |   |   |   |   customer_satisfaction <= 1
+|   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   num_customizations <= 0: Slow (3.0)
+|   |   |   |   |   |   |   num_customizations > 0: Fast (16.0/6.0)
+|   |   |   |   |   |   num_customizations > 2: Slow (14.0/1.0)
+|   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   num_customizations <= 0
+|   |   |   |   |   |   |   |   |   cart_size <= 5: Fast (28.0/9.0)
+|   |   |   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   |   |   cart_size <= 6: Slow (7.0/2.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 6: Fast (3.0/1.0)
+|   |   |   |   |   |   |   |   num_customizations > 0: Slow (351.0/168.0)
+|   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   cart_size <= 7
+|   |   |   |   |   |   |   |   |   cart_size <= 5: Fast (112.0/45.0)
+|   |   |   |   |   |   |   |   |   cart_size > 5: Slow (21.0/9.0)
+|   |   |   |   |   |   |   |   cart_size > 7: Fast (7.0)
+|   |   |   |   |   |   customer_satisfaction > 4: Slow (290.0/130.0)
+|   |   |   |   has_food_item = True: Fast (528.0/247.0)
+|   |   |   store_location_type = Urban
+|   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   cart_size <= 5: Slow (172.0/80.0)
+|   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   num_customizations <= 1: Slow (13.0/5.0)
+|   |   |   |   |   |   |   num_customizations > 1: Fast (45.0/11.0)
+|   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   |   |   num_customizations <= 3: Fast (56.0/17.0)
+|   |   |   |   |   |   |   |   num_customizations > 3: Slow (14.0/4.0)
+|   |   |   |   |   |   |   num_customizations > 4: Fast (7.0/1.0)
+|   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   cart_size <= 3: Fast (34.0/10.0)
+|   |   |   |   |   |   |   cart_size > 3: Slow (50.0/20.0)
+|   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   |   cart_size <= 6: Fast (74.0/28.0)
+|   |   |   |   |   |   |   |   cart_size > 6: Slow (13.0/4.0)
+|   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   num_customizations <= 3: Slow (128.0/51.0)
+|   |   |   |   |   |   |   |   num_customizations > 3: Fast (74.0/35.0)
+|   |   |   |   |   |   has_food_item = True: Slow (184.0/85.0)
+|   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   num_customizations <= 1: Slow (128.0/54.0)
+|   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   num_customizations <= 2: Fast (129.0/52.0)
+|   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   num_customizations <= 3: Slow (88.0/34.0)
+|   |   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   |   num_customizations <= 6
+|   |   |   |   |   |   |   |   |   |   cart_size <= 3: Fast (45.0/14.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 3: Slow (53.0/24.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 6: Slow (7.0/1.0)
+|   |   is_rewards_member = True
+|   |   |   num_customizations <= 0: Slow (584.0/251.0)
+|   |   |   num_customizations > 0
+|   |   |   |   num_customizations <= 6
+|   |   |   |   |   store_location_type = Rural: Slow (2138.0/997.0)
+|   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   cart_size <= 2: Fast (82.0/34.0)
+|   |   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   |   cart_size <= 5: Slow (324.0/155.0)
+|   |   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   |   cart_size <= 7: Fast (65.0/23.0)
+|   |   |   |   |   |   |   |   |   cart_size > 7: Slow (22.0/6.0)
+|   |   |   |   |   |   num_customizations > 1: Slow (1806.0/863.0)
+|   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   has_food_item = False: Slow (1252.0/615.0)
+|   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   num_customizations <= 1: Fast (183.0/83.0)
+|   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   customer_satisfaction <= 1: Slow (31.0/9.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 1
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   |   cart_size <= 5: Fast (128.0/51.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 6: Slow (17.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 6: Fast (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 6: Fast (12.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 6: Slow (9.0/2.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 2: Slow (20.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 4: Fast (34.0/14.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   cart_size > 4: Slow (29.0/9.0)
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 2: Slow (67.0/27.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 1: Fast (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 3: Fast (14.0/3.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   cart_size > 3: Slow (31.0/13.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 4: Slow (24.0/11.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (250.0/105.0)
+|   |   |   |   num_customizations > 6
+|   |   |   |   |   store_location_type = Rural: Fast (36.0/11.0)
+|   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   has_food_item = False: Slow (18.0/8.0)
+|   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   cart_size <= 2: Slow (4.0/1.0)
+|   |   |   |   |   |   |   cart_size > 2: Fast (11.0/3.0)
+|   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   has_food_item = False: Fast (19.0/7.0)
+|   |   |   |   |   |   has_food_item = True: Slow (12.0/4.0)
+|   time_period = Morning Rush
+|   |   customer_satisfaction <= 1: Slow (489.0/211.0)
+|   |   customer_satisfaction > 1
+|   |   |   cart_size <= 1
+|   |   |   |   has_food_item = False
+|   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   store_location_type = Rural: Slow (30.0/10.0)
+|   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (22.0/6.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Fast (9.0/3.0)
+|   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   num_customizations <= 1: Fast (2.0)
+|   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   num_customizations <= 2: Slow (7.0/1.0)
+|   |   |   |   |   |   |   |   num_customizations > 2: Fast (12.0/5.0)
+|   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   num_customizations <= 5: Slow (142.0/65.0)
+|   |   |   |   |   |   num_customizations > 5: Fast (7.0)
+|   |   |   |   has_food_item = True
+|   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   num_customizations <= 1: Fast (11.0/3.0)
+|   |   |   |   |   |   num_customizations > 1: Slow (45.0/14.0)
+|   |   |   |   |   is_rewards_member = True: Slow (95.0/35.0)
+|   |   |   cart_size > 1
+|   |   |   |   is_rewards_member = False
+|   |   |   |   |   cart_size <= 2
+|   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   num_customizations <= 4: Fast (82.0/34.0)
+|   |   |   |   |   |   |   |   num_customizations > 4: Slow (11.0/3.0)
+|   |   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   |   customer_satisfaction <= 2: Fast (3.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 2: Slow (53.0/25.0)
+|   |   |   |   |   |   store_location_type = Suburban: Fast (175.0/69.0)
+|   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   num_customizations <= 5
+|   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   num_customizations <= 2: Slow (36.0/11.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 2: Fast (2.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Slow (2.0)
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (15.0/6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3: Fast (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 3: Slow (9.0/3.0)
+|   |   |   |   |   |   |   |   has_food_item = True: Fast (46.0/17.0)
+|   |   |   |   |   |   |   num_customizations > 5: Slow (7.0)
+|   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   num_customizations <= 0
+|   |   |   |   |   |   |   store_location_type = Rural: Fast (84.0/29.0)
+|   |   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   |   cart_size <= 6
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 2: Fast (15.0/5.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   |   has_food_item = False: Slow (26.0/8.0)
+|   |   |   |   |   |   |   |   |   |   |   has_food_item = True: Fast (17.0/7.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   cart_size <= 5: Slow (21.0/8.0)
+|   |   |   |   |   |   |   |   |   |   |   cart_size > 5: Fast (2.0)
+|   |   |   |   |   |   |   |   cart_size > 6: Fast (9.0)
+|   |   |   |   |   |   |   store_location_type = Urban: Slow (73.0/36.0)
+|   |   |   |   |   |   num_customizations > 0
+|   |   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   |   cart_size <= 4
+|   |   |   |   |   |   |   |   |   cart_size <= 3
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   has_food_item = False: Slow (52.0/19.0)
+|   |   |   |   |   |   |   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (15.0/5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Slow (26.0/8.0)
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Fast (23.0/8.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 2: Slow (8.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   has_food_item = True: Fast (26.0/12.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 3: Fast (67.0/23.0)
+|   |   |   |   |   |   |   |   |   cart_size > 3
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3: Fast (203.0/98.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 3: Slow (34.0/11.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (22.0/7.0)
+|   |   |   |   |   |   |   |   cart_size > 4: Slow (394.0/169.0)
+|   |   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   |   cart_size <= 7
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 6: Slow (74.0/31.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size > 6: Fast (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Fast (50.0/20.0)
+|   |   |   |   |   |   |   |   |   |   |   cart_size > 7: Slow (9.0/1.0)
+|   |   |   |   |   |   |   |   |   |   has_food_item = True: Slow (88.0/43.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   |   |   |   |   has_food_item = False: Slow (109.0/47.0)
+|   |   |   |   |   |   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 3: Fast (6.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   cart_size > 3: Slow (9.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Fast (49.0/21.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 5: Slow (69.0/21.0)
+|   |   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   |   |   |   |   |   cart_size <= 6: Fast (32.0/10.0)
+|   |   |   |   |   |   |   |   |   |   |   cart_size > 6: Slow (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (7.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (146.0/67.0)
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (109.0/50.0)
+|   |   |   |   |   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 6: Slow (29.0/9.0)
+|   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 6: Fast (2.0)
+|   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 3: Fast (37.0/12.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 3
+|   |   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (65.0/30.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (52.0/21.0)
+|   |   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 2
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 4: Slow (58.0/20.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 4: Fast (9.0/3.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 2: Fast (467.0/229.0)
+|   |   |   |   |   |   |   |   has_food_item = True: Slow (367.0/178.0)
+|   |   |   |   is_rewards_member = True
+|   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   store_location_type = Rural: Slow (1232.0/571.0)
+|   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   num_customizations <= 3: Slow (941.0/424.0)
+|   |   |   |   |   |   |   num_customizations > 3
+|   |   |   |   |   |   |   |   cart_size <= 6: Slow (280.0/138.0)
+|   |   |   |   |   |   |   |   cart_size > 6: Fast (48.0/17.0)
+|   |   |   |   |   |   store_location_type = Urban
+|   |   |   |   |   |   |   cart_size <= 4
+|   |   |   |   |   |   |   |   cart_size <= 2: Fast (170.0/76.0)
+|   |   |   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   |   |   cart_size <= 3: Slow (262.0/121.0)
+|   |   |   |   |   |   |   |   |   cart_size > 3: Fast (253.0/117.0)
+|   |   |   |   |   |   |   cart_size > 4
+|   |   |   |   |   |   |   |   cart_size <= 7: Slow (422.0/185.0)
+|   |   |   |   |   |   |   |   cart_size > 7
+|   |   |   |   |   |   |   |   |   cart_size <= 9: Fast (51.0/19.0)
+|   |   |   |   |   |   |   |   |   cart_size > 9: Slow (8.0/1.0)
+|   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   store_location_type = Rural
+|   |   |   |   |   |   |   customer_satisfaction <= 2: Slow (82.0/32.0)
+|   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   cart_size <= 2: Fast (104.0/45.0)
+|   |   |   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   |   |   cart_size <= 4
+|   |   |   |   |   |   |   |   |   |   cart_size <= 3
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 4: Fast (81.0/34.0)
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 0: Slow (6.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations <= 1: Fast (11.0/4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 1: Slow (19.0/6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (14.0/4.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 3: Slow (38.0/14.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 3: Slow (161.0/62.0)
+|   |   |   |   |   |   |   |   |   cart_size > 4: Fast (269.0/128.0)
+|   |   |   |   |   |   store_location_type = Suburban
+|   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (578.0/273.0)
+|   |   |   |   |   |   |   customer_satisfaction > 4: Fast (328.0/146.0)
+|   |   |   |   |   |   store_location_type = Urban: Slow (772.0/384.0)
+|   time_period = Other
+|   |   store_location_type = Rural
+|   |   |   customer_satisfaction <= 4
+|   |   |   |   cart_size <= 5
+|   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   is_rewards_member = False: Fast (196.0/83.0)
+|   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   num_customizations <= 0: Slow (18.0/4.0)
+|   |   |   |   |   |   |   num_customizations > 0
+|   |   |   |   |   |   |   |   customer_satisfaction <= 2: Fast (78.0/31.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   |   cart_size <= 1: Fast (14.0/3.0)
+|   |   |   |   |   |   |   |   |   cart_size > 1: Slow (220.0/106.0)
+|   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   customer_satisfaction <= 1: Slow (11.0/3.0)
+|   |   |   |   |   |   |   customer_satisfaction > 1: Fast (138.0/65.0)
+|   |   |   |   |   |   is_rewards_member = True: Fast (244.0/104.0)
+|   |   |   |   cart_size > 5
+|   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   cart_size <= 6: Fast (28.0/7.0)
+|   |   |   |   |   |   |   cart_size > 6
+|   |   |   |   |   |   |   |   cart_size <= 8
+|   |   |   |   |   |   |   |   |   num_customizations <= 0
+|   |   |   |   |   |   |   |   |   |   is_rewards_member = False: Fast (3.0)
+|   |   |   |   |   |   |   |   |   |   is_rewards_member = True: Slow (9.0/3.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 0
+|   |   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Slow (4.0)
+|   |   |   |   |   |   |   |   |   |   |   is_rewards_member = True: Fast (6.0/2.0)
+|   |   |   |   |   |   |   |   |   |   has_food_item = True: Slow (12.0/2.0)
+|   |   |   |   |   |   |   |   cart_size > 8: Fast (8.0/2.0)
+|   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   cart_size <= 6: Slow (21.0/6.0)
+|   |   |   |   |   |   |   |   |   cart_size > 6
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 3
+|   |   |   |   |   |   |   |   |   |   |   cart_size <= 7: Slow (9.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   cart_size > 7
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 8: Fast (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 8: Slow (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 3: Fast (17.0/6.0)
+|   |   |   |   |   |   |   |   has_food_item = True
+|   |   |   |   |   |   |   |   |   cart_size <= 6: Fast (20.0/9.0)
+|   |   |   |   |   |   |   |   |   cart_size > 6: Slow (14.0/4.0)
+|   |   |   |   |   |   |   num_customizations > 2
+|   |   |   |   |   |   |   |   is_rewards_member = False
+|   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 2: Fast (2.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 2: Slow (7.0/2.0)
+|   |   |   |   |   |   |   |   |   has_food_item = True: Fast (12.0/4.0)
+|   |   |   |   |   |   |   |   is_rewards_member = True
+|   |   |   |   |   |   |   |   |   has_food_item = False
+|   |   |   |   |   |   |   |   |   |   cart_size <= 6: Fast (9.0/3.0)
+|   |   |   |   |   |   |   |   |   |   cart_size > 6: Slow (6.0/2.0)
+|   |   |   |   |   |   |   |   |   has_food_item = True: Slow (14.0/5.0)
+|   |   |   |   |   num_customizations > 3: Slow (82.0/25.0)
+|   |   |   customer_satisfaction > 4: Slow (682.0/308.0)
+|   |   store_location_type = Suburban
+|   |   |   is_rewards_member = False
+|   |   |   |   customer_satisfaction <= 1: Fast (29.0/9.0)
+|   |   |   |   customer_satisfaction > 1: Slow (717.0/340.0)
+|   |   |   is_rewards_member = True
+|   |   |   |   has_food_item = False: Fast (864.0/421.0)
+|   |   |   |   has_food_item = True
+|   |   |   |   |   num_customizations <= 5
+|   |   |   |   |   |   cart_size <= 6
+|   |   |   |   |   |   |   cart_size <= 5
+|   |   |   |   |   |   |   |   customer_satisfaction <= 4: Slow (249.0/115.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 4: Fast (135.0/59.0)
+|   |   |   |   |   |   |   cart_size > 5: Fast (65.0/23.0)
+|   |   |   |   |   |   cart_size > 6: Slow (54.0/21.0)
+|   |   |   |   |   num_customizations > 5: Slow (29.0/9.0)
+|   |   store_location_type = Urban
+|   |   |   is_rewards_member = False
+|   |   |   |   has_food_item = False: Slow (422.0/203.0)
+|   |   |   |   has_food_item = True
+|   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   cart_size <= 6: Fast (146.0/62.0)
+|   |   |   |   |   |   cart_size > 6
+|   |   |   |   |   |   |   customer_satisfaction <= 2: Slow (6.0)
+|   |   |   |   |   |   |   customer_satisfaction > 2
+|   |   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 3: Fast (3.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 2: Fast (5.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 2: Slow (2.0)
+|   |   |   |   |   |   |   |   num_customizations > 3: Slow (4.0)
+|   |   |   |   |   customer_satisfaction > 4: Slow (88.0/36.0)
+|   |   |   is_rewards_member = True
+|   |   |   |   has_food_item = False: Slow (725.0/327.0)
+|   |   |   |   has_food_item = True
+|   |   |   |   |   num_customizations <= 4
+|   |   |   |   |   |   cart_size <= 2
+|   |   |   |   |   |   |   customer_satisfaction <= 3: Slow (23.0/4.0)
+|   |   |   |   |   |   |   customer_satisfaction > 3
+|   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 1: Slow (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 1: Fast (5.0)
+|   |   |   |   |   |   |   |   |   num_customizations > 2: Slow (11.0/3.0)
+|   |   |   |   |   |   |   |   customer_satisfaction > 4: Slow (27.0/12.0)
+|   |   |   |   |   |   cart_size > 2
+|   |   |   |   |   |   |   cart_size <= 5: Fast (287.0/142.0)
+|   |   |   |   |   |   |   cart_size > 5
+|   |   |   |   |   |   |   |   num_customizations <= 3
+|   |   |   |   |   |   |   |   |   customer_satisfaction <= 4
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction <= 1: Fast (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   customer_satisfaction > 1: Slow (45.0/15.0)
+|   |   |   |   |   |   |   |   |   customer_satisfaction > 4
+|   |   |   |   |   |   |   |   |   |   num_customizations <= 1
+|   |   |   |   |   |   |   |   |   |   |   cart_size <= 6: Slow (5.0)
+|   |   |   |   |   |   |   |   |   |   |   cart_size > 6: Fast (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   num_customizations > 1
+|   |   |   |   |   |   |   |   |   |   |   num_customizations <= 2
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size <= 7: Fast (7.0)
+|   |   |   |   |   |   |   |   |   |   |   |   cart_size > 7: Slow (2.0)
+|   |   |   |   |   |   |   |   |   |   |   num_customizations > 2: Fast (9.0/3.0)
+|   |   |   |   |   |   |   |   num_customizations > 3: Slow (15.0/2.0)
+|   |   |   |   |   num_customizations > 4: Fast (41.0/16.0)
+
+Number of Leaves  : 	375
+
+Size of the tree : 	723
+
+
+Time taken to build model: 1.87 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       69120               69.12   %
+Incorrectly Classified Instances     30880               30.88   %
+Kappa statistic                          0.3827
+Mean absolute error                      0.3715
+Root mean squared error                  0.4342
+Relative absolute error                 74.2998 %
+Root relative squared error             86.8406 %
+Total Number of Instances           100000     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,601    0,218    0,735      0,601    0,661      0,389    0,772     0,771     Fast
+                 0,782    0,399    0,661      0,782    0,716      0,389    0,772     0,736     Slow
+Weighted Avg.    0,691    0,308    0,698      0,691    0,689      0,389    0,772     0,753     
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+ 30157 19996 |     a = Fast
+ 10884 38963 |     b = Slow
+

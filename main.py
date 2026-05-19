@@ -95,32 +95,49 @@ print(f"\n    {'Period':<16} {'Count':>8}")
 for period, count in df["time_period"].value_counts().items():
     print(f"    {period:<16} {count:>8,}")
 
-# Step 2.2 - discretize target
+# Step 2.2 - discretize targets
+# V1: satisfaction_level — first attempt, produced a single-leaf tree (Kappa ~0)
 df["satisfaction_level"] = df["customer_satisfaction"].apply(
     lambda x: "High" if x >= 4 else "Low"
 )
-step("Discretized customer_satisfaction -> satisfaction_level  (High >=4 / Low <=3)")
+
+# V2: fulfillment_speed — revised target after V1 showed no predictive power
+FULFILLMENT_THRESHOLD = 4.4
+df["fulfillment_speed"] = df["fulfillment_time_min"].apply(
+    lambda x: "Fast" if x <= FULFILLMENT_THRESHOLD else "Slow"
+)
+step(f"Discretized targets:")
+print(f"    V1 - satisfaction_level: High (>=4): {(df['satisfaction_level']=='High').sum():,}  |  Low (<=3): {(df['satisfaction_level']=='Low').sum():,}")
+print(f"    V2 - fulfillment_speed:  Fast (<={FULFILLMENT_THRESHOLD} min): {(df['fulfillment_speed']=='Fast').sum():,}  |  Slow (>{FULFILLMENT_THRESHOLD} min): {(df['fulfillment_speed']=='Slow').sum():,}")
 
 # Step 2.3 - feature selection
-dt_features = [
+dt_v1_features = [
     "order_channel", "time_period", "store_location_type",
     "cart_size", "num_customizations", "fulfillment_time_min",
     "has_food_item", "is_rewards_member",
-    "satisfaction_level"
+    "satisfaction_level"  # target V1
+]
+dt_v2_features = [
+    "order_channel", "time_period", "store_location_type",
+    "cart_size", "num_customizations", "has_food_item",
+    "is_rewards_member", "customer_satisfaction",
+    "fulfillment_speed"  # target V2
 ]
 cluster_features = [
     "cart_size", "num_customizations", "total_spend",
     "fulfillment_time_min", "customer_satisfaction"
 ]
 
-df_dt      = df[dt_features].copy()
+df_dt_v1   = df[dt_v1_features].copy()
+df_dt_v2   = df[dt_v2_features].copy()
 df_cluster = df[cluster_features].copy()
-step(f"Selected features - Decision Tree: {len(dt_features)-1} features + 1 target  |  Clustering: {len(cluster_features)} features")
+step(f"Selected features - DT V1: {len(dt_v1_features)-1} features + target  |  DT V2: {len(dt_v2_features)-1} features + target  |  Clustering: {len(cluster_features)} features")
 print(f"    Excluded: identifiers (customer_id, order_id, store_id), raw date/time columns, redundant fields")
 
 # Step 2.4 - boolean encoding
-df_dt["has_food_item"]     = df_dt["has_food_item"].map({True: "True", False: "False"})
-df_dt["is_rewards_member"] = df_dt["is_rewards_member"].map({True: "True", False: "False"})
+for df_dt in [df_dt_v1, df_dt_v2]:
+    df_dt["has_food_item"]     = df_dt["has_food_item"].map({True: "True", False: "False"})
+    df_dt["is_rewards_member"] = df_dt["is_rewards_member"].map({True: "True", False: "False"})
 step("Encoded boolean columns to string True/False for ARFF compatibility")
 
 # Step 2.5 - normalization
@@ -133,6 +150,11 @@ step("Applied Min-Max normalization to clustering features (all values now in [0
 print(f"\n    Reason: K-Means uses Euclidean distance - unscaled features would bias clusters toward high-variance variables")
 
 # Step 2.6 - ARFF export
+def quote(v):
+    """Wrap value in single quotes if it contains a space or comma."""
+    s = str(v)
+    return f"'{s}'" if (" " in s or "," in s) else s
+
 def to_arff(df, relation_name, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w") as f:
@@ -141,24 +163,29 @@ def to_arff(df, relation_name, output_path):
             if pd.api.types.is_numeric_dtype(df[col]):
                 f.write(f"@attribute {col} NUMERIC\n")
             else:
-                values = ",".join(sorted(df[col].unique().astype(str)))
+                values = ",".join(quote(v) for v in sorted(df[col].unique().astype(str)))
                 f.write(f"@attribute {col} {{{values}}}\n")
         f.write("\n@data\n")
         for _, row in df.iterrows():
-            f.write(",".join(str(v) for v in row) + "\n")
+            f.write(",".join(quote(v) if isinstance(v, str) else str(v) for v in row) + "\n")
 
-to_arff(df_dt,             "starbucks_decision_tree", "weka/decision_tree.arff")
-to_arff(df_cluster_scaled, "starbucks_clustering",    "weka/clustering.arff")
+to_arff(df_dt_v1,          "starbucks_decision_tree_v1", "weka/decision_tree_v1.arff")
+to_arff(df_dt_v2,          "starbucks_decision_tree_v2", "weka/decision_tree_v2.arff")
+to_arff(df_cluster_scaled, "starbucks_clustering",       "weka/clustering.arff")
 step("Exported ARFF files to weka/")
-print(f"    weka/decision_tree.arff  -> {len(df_dt):,} instances, {len(dt_features)} attributes (incl. class)")
-print(f"    weka/clustering.arff     -> {len(df_cluster_scaled):,} instances, {len(cluster_features)} attributes")
+print(f"    weka/decision_tree_v1.arff  -> target: satisfaction_level  ({len(df_dt_v1):,} instances)")
+print(f"    weka/decision_tree_v2.arff  -> target: fulfillment_speed   ({len(df_dt_v2):,} instances)")
+print(f"    weka/clustering.arff        -> unsupervised                ({len(df_cluster_scaled):,} instances)")
 
 # ── STAGE 3 - Post-processing preview ──────────────────────────────────────
 
 section("STAGE 3 - Processed data preview")
 
-print("  First 5 rows - Decision Tree dataset (satisfaction_level is the target):\n")
-print(df_dt.head().to_string(index=False))
+print("  First 5 rows - Decision Tree V1 (target: satisfaction_level):\n")
+print(df_dt_v1.head().to_string(index=False))
+print(f"\n{SUBDIV}")
+print("  First 5 rows - Decision Tree V2 (target: fulfillment_speed):\n")
+print(df_dt_v2.head().to_string(index=False))
 
 print(f"\n{SUBDIV}")
 print("  First 5 rows - Clustering dataset (normalized, no target column):\n")

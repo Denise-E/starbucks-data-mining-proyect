@@ -121,8 +121,8 @@ Open and run in order:
 - [ ] Run J48 (Decision Tree) in WEKA and export results to `weka/results/`
 - [ ] Run SimpleKMeans (Clustering) in WEKA and export results to `weka/results/`
 - [ ] Build `notebooks/03_results_analysis.ipynb` to visualize model outputs and extract insights
-- [ ] Prepare the final PPT presentation in `presentation/`
-- [ ] Record the demo video (max 5 min) showing `main.py` + WEKA model execution
+- [ ] Prepare the final PPT presentation in Google Drive 
+- [ ] Plan demo speech + content in Google Drive
 
 ---
 

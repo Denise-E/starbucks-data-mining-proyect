@@ -1,0 +1,55 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     starbucks_decision_tree
+Instances:    100000
+Attributes:   9
+              order_channel
+              time_period
+              store_location_type
+              cart_size
+              num_customizations
+              fulfillment_time_min
+              has_food_item
+              is_rewards_member
+              satisfaction_level
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+: High (100000.0/36058.0)
+
+Number of Leaves  : 	1
+
+Size of the tree : 	1
+
+
+Time taken to build model: 1.48 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       63807               63.807  %
+Incorrectly Classified Instances     36193               36.193  %
+Kappa statistic                          0.0024
+Mean absolute error                      0.4596
+Root mean squared error                  0.4801
+Relative absolute error                 99.6645 %
+Root relative squared error             99.9893 %
+Total Number of Instances           100000     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,993    0,991    0,640      0,993    0,778      0,010    0,520     0,651     High
+                 0,009    0,007    0,416      0,009    0,018      0,010    0,520     0,374     Low
+Weighted Avg.    0,638    0,636    0,559      0,638    0,504      0,010    0,520     0,551     
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+ 63474   468 |     a = High
+ 35725   333 |     b = Low
+
